@@ -1,4 +1,4 @@
-package empresa;
+package ejercicio1;
 
 public class ReciboDeoSueldo {
 
