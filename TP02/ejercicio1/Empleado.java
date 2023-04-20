@@ -1,12 +1,14 @@
 package ejercicio1;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 public abstract class Empleado {
 	private String nombre;
 	private String direccion;
 	protected String estadoCivil;
-	private Date fechaDeNacimiento;
+	private LocalDate fechaDeNacimiento;
 	protected double sueldoBasico;
 	
 	public String getNombre() {
@@ -27,10 +29,10 @@ public abstract class Empleado {
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
-	public Date getFechaDeNacimiento() {
+	public LocalDate getFechaDeNacimiento() {
 		return fechaDeNacimiento;
 	}
-	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
+	public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
 		this.fechaDeNacimiento = fechaDeNacimiento;
 	}
 	public double getSueldoBasico() {
@@ -41,7 +43,10 @@ public abstract class Empleado {
 	}
 	
 	public abstract double sueldoNeto() ;
-	public abstract int edad();
+	public int edad() {
+		Period periodo = Period.between(this.getFechaDeNacimiento(), LocalDate.now());
+		return periodo.getYears();
+	}
 	public abstract double totalRetenciones();
 	public abstract double sueldoBruto();
 }

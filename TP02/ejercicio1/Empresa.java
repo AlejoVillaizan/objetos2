@@ -9,7 +9,7 @@ public class Empresa {
 	private String nombre;
 	private List<Empleado> empleados; 
 	private int cuit;
-	private List<ReciboDeoSueldo> recibos;
+	private List<ReciboDeSueldo> recibos;
 	
 	public double montoTotalSueldosNetos() {
 		return empleados.stream().mapToDouble(empleado ->empleado.sueldoNeto()).sum();
@@ -22,6 +22,15 @@ public class Empresa {
 	public double montoTotalRetenciones() {
 		return empleados.stream().mapToDouble(empleado ->empleado.totalRetenciones()).sum();
 	}
+	
+	public void liquidacionDeSueldo(Empleado empleado) {
+		/*ReciboDeSueldo recibo = new ReciboDeSueldo();
+		recibo.generarReciboPara(empleado);
+		recibos.add(recibo);*/
+		ReciboDeSueldo recibo = empleado.generarRecibo();
+		recibos.add(recibo);
+	}
+	
 }
 
 
